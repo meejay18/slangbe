@@ -1,6 +1,8 @@
 import { Application, Request, Response } from "express";
+import userRouter from "./router/userRouter";
 
 export const mainApp = async (app: Application) => {
+  app.use("/api", userRouter);
   try {
     app.get("/", (req: Request, res: Response): any => {
       try {
