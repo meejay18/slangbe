@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createSlang = void 0;
+exports.readOneSlang = exports.readAllSlang = exports.createSlang = void 0;
 const userModel_1 = __importDefault(require("../model/userModel"));
 const SlangModel_1 = __importDefault(require("../model/SlangModel"));
 const mongoose_1 = require("mongoose");
@@ -49,3 +49,40 @@ const createSlang = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.createSlang = createSlang;
+const readAllSlang = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const slang = yield SlangModel_1.default.find().sort({
+            createdAt: -1,
+        });
+        return res.status(200).json({
+            message: "all slangs read successfully",
+            data: slang,
+            status: 200,
+        });
+    }
+    catch (error) {
+        return res.status(404).json({
+            message: "Error getting all slangs",
+            data: error,
+        });
+    }
+});
+exports.readAllSlang = readAllSlang;
+const readOneSlang = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { slangID } = req.params;
+        const readSlang = yield SlangModel_1.default.findById(slangID);
+        return res.status(200).json({
+            message: "Slang read successfully",
+            data: readSlang,
+            status: 200,
+        });
+    }
+    catch (error) {
+        return res.status(404).json({
+            message: "Error getting one slang",
+            data: error,
+        });
+    }
+});
+exports.readOneSlang = readOneSlang;
