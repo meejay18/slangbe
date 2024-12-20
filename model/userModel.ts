@@ -1,13 +1,12 @@
-import { model, Schema, Document } from "mongoose";
+import { model, Schema, Document, Types } from "mongoose";
 
 interface iUser {
   name: string;
   email: string;
   password: string;
+  slangs: Array<{}>;
   avatar: string;
   avatarID: string;
-  verifiedToken: string;
-  isVerified: false;
 }
 
 interface iUserData extends iUser, Document {}
@@ -30,12 +29,12 @@ const userModel = new Schema<iUserData>(
     avatarID: {
       type: String,
     },
-    verifiedToken: {
-      type: String,
-    },
-    isVerified: {
-      type: Boolean,
-    },
+    slangs: [
+      {
+        type: Types.ObjectId,
+        ref: "slangs",
+      },
+    ],
   },
   { timestamps: true }
 );
