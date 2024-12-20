@@ -8,20 +8,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.mainApp = void 0;
+const slangRouter_1 = __importDefault(require("./router/slangRouter"));
+const userRouter_1 = __importDefault(require("./router/userRouter"));
 const mainApp = (app) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        app.use("/api/user", userRouter_1.default);
+        app.use("/api/slang", slangRouter_1.default);
         app.get("/", (req, res) => {
             try {
-                return res.status(20).json({
+                res.status(200).json({
                     message: "Welcome to slang App",
                     status: 200,
                 });
             }
             catch (error) {
-                return res.status(404).json({
-                    message: "Error",
+                res.status(404).json({
+                    message: error,
                 });
             }
         });

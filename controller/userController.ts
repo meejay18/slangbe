@@ -17,16 +17,16 @@ export const createUser = async (
     const salt = await bcrypt.genSalt(9);
     const hashed = await bcrypt.hash(password, salt);
 
-    // const { secure_url, public_id } = await cloudinary.uploader.upload(
-    //   req.file?.path
-    // );
+    const { secure_url, public_id } = await cloudinary.uploader.upload(
+      req.file?.path
+    );
 
     const user = await userModel.create({
       name,
       email,
       password: hashed,
-      // avatar: secure_url,
-      // avatarID: public_id,
+      avatar: secure_url,
+      avatarID: public_id,
     });
     removeFileUpload(folderPath);
 

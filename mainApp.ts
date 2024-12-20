@@ -5,17 +5,18 @@ import userRouter from "./router/userRouter";
 
 export const mainApp = async (app: Application) => {
   try {
-    app.use("/api", userRouter);
-    app.get("/", (req: Request, res: Response): any => {
+    app.use("/api/user", userRouter);
+    app.use("/api/slang", slangRouter);
+
+    app.get("/", (req: Request, res: Response) => {
       try {
-        app.use("/api/slang", slangRouter);
-        return res.status(20).json({
+        res.status(200).json({
           message: "Welcome to slang App",
           status: 200,
         });
       } catch (error) {
-        return res.status(404).json({
-          message: "Error",
+        res.status(404).json({
+          message: error,
         });
       }
     });
