@@ -22,4 +22,4 @@ const storage = multer_1.default.diskStorage({
         cb(null, file.fieldname + "-" + uniqueSuffix + ".jpg");
     },
 });
-exports.upload = (0, multer_1.default)({ storage: storage }).single("image");
+exports.upload = (0, multer_1.default)({ storage: storage }).single("avatar");
