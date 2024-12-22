@@ -6,7 +6,7 @@ let folder = path.join(__dirname, "../uploads");
 
 if (!fs.existsSync(folder)) {
   fs.mkdir(folder, () => {
-    console.log("created");
+    // console.log("created");
   });
 }
 

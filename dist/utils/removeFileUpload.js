@@ -11,7 +11,7 @@ const removeFileUpload = (folderPath) => {
         let readFileData = node_fs_1.default.readdirSync(folderPath);
         for (let i of readFileData) {
             node_fs_1.default.unlink(node_path_1.default.join(folderPath, i), () => {
-                console.log("removed");
+                // console.log("removed");
             });
         }
     }

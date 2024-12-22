@@ -10,7 +10,7 @@ const node_fs_1 = __importDefault(require("node:fs"));
 let folder = node_path_1.default.join(__dirname, "../uploads");
 if (!node_fs_1.default.existsSync(folder)) {
     node_fs_1.default.mkdir(folder, () => {
-        console.log("created");
+        // console.log("created");
     });
 }
 const storage = multer_1.default.diskStorage({

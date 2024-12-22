@@ -7,7 +7,7 @@ export const removeFileUpload = (folderPath: any) => {
 
     for (let i of readFileData) {
       fs.unlink(path.join(folderPath, i), () => {
-        console.log("removed");
+        // console.log("removed");
       });
     }
   } catch (error) {
